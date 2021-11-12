@@ -44,6 +44,11 @@ class BluetoothDevice {
     return;
   }
 
+  
+  /// Remove bonded device (Android only)
+  Future<void> removeBonded() async => await FlutterBlue.instance._channel
+      .invokeMethod('removeBond', {'address': id.id});
+
   /// Cancels connection to the Bluetooth Device
   Future disconnect() =>
       FlutterBlue.instance._channel.invokeMethod('disconnect', id.toString());
